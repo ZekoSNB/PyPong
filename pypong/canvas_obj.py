@@ -14,3 +14,5 @@ class CanvasObject:
         rect = pygame.Rect(self.x, self.y, self.width, self.height)
         # TODO fix rectcolor
         pygame.draw.rect(self.screen, self.rectcolor, rect)
+
+    # TODO: check colision

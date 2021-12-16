@@ -5,6 +5,8 @@ from pypong.ball import Ball
 
 
 class Game:
+    # TODO: add player2
+    # TODO: add ball
     def __init__(self) -> None:
         self.pwidth, self.pheight = 20, 100
         self.HEIGHT, self.WIDTH = 600, 900
