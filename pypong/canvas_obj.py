@@ -8,6 +8,7 @@ class CanvasObject:
         self.width = width
         self.height = height
         self.spd = speed
+        self.rectcolor = (255, 255, 255)
         self.screen = screen
 
     def render(self):
