@@ -2,18 +2,14 @@ import pygame
 
 
 class CanvasObject:
-    def __init__(self, x, y, speed, width, height, screen) -> None:
-        self.x = x
-        self.y = y
+    def __init__(self, speed, width, height, screen) -> None:
         self.width = width
         self.height = height
-        self.spd = speed
+        self.speed = speed
         self.rectcolor = (255, 255, 255)
         self.screen = screen
-
-    def render(self):
-        rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        # TODO fix rectcolor
-        pygame.draw.rect(self.screen, self.rectcolor, rect)
-
+        self.up = False
+        self.down = False
     # TODO: check colision
+    def collision(self):
+        pass

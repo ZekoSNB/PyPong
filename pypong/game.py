@@ -8,10 +8,9 @@ class Game:
     # TODO: add player2
     # TODO: add ball
     def __init__(self) -> None:
-        self.pwidth, self.pheight = 20, 100
         self.HEIGHT, self.WIDTH = 600, 900
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
-        self.p1 = Player(50, 150, 5, self.pwidth, self.pheight, self.screen)
+        self.p1 = Player(50, 150, 5,self.screen)
         pygame.init()
         pygame.display.set_caption('Pong ^-^')
         
