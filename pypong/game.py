@@ -13,8 +13,8 @@ class Game:
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.p1 = Player(50, 150, 5, self.pwidth, self.pheight, self.screen)
         pygame.init()
-        self.rectcolor = (255, 255, 255)
         pygame.display.set_caption('Pong ^-^')
+        
         self.running = True
 
     def run(self):
