@@ -11,6 +11,7 @@ class Game:
         self.HEIGHT, self.WIDTH = 600, 900
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.p1 = Player(50, 150, self.screen)
+        self.p2 = Player(850, 150, self.screen)
         pygame.init()
         pygame.display.set_caption('Pong ^-^')
         
@@ -24,5 +25,6 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.running = False
+            self.p2.render()
             self.p1.render()
             pygame.display.update()
