@@ -4,14 +4,15 @@ import pygame
 
 class Player(CanvasObject):
     def __init__(self, x, y,screen) -> None:
-        super.__init__(self)
+        super().__init__()
         self.x = x
         self.y = y
         self.screen = screen
     def render(self):
-        rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         # TODO fix rectcolor
-        pygame.draw.rect(self.screen, self.rectcolor, rect)
+        pygame.draw.rect(self.screen, self.rectcolor, self.rect)
+        print(self.screen, self.rectcolor, self.rect)
     def move(self):
         if self.up:
             self.y += self.speed

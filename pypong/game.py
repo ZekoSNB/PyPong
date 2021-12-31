@@ -1,7 +1,7 @@
 import pygame
 
 from pypong.player import Player
-from pypong.ball import Ball
+# from pypong.ball import Ball
 
 
 class Game:
@@ -17,7 +17,7 @@ class Game:
         self.running = True
 
     def run(self):
-        while self.run:
+        while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
@@ -25,4 +25,4 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         self.running = False
             self.p1.render()
-        print(self.screen, self.y)
+            pygame.display.update()
