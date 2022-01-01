@@ -15,18 +15,13 @@ class Game(CanvasObject):
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.p1 = Player(50, 150, self.screen)
         self.p2 = Player(850, 150, self.screen)
-        self.ball = Ball(450,300, self.screen)
+        self.ball = Ball(425,275, self.screen)
         pygame.init()
         pygame.display.set_caption('Pong ^-^')
         
         self.running = True
-
-    def run(self):
-         
-        while self.running:
-            self.clock.tick(60)
-            self.screen.fill(self.scrcolor)
-            for event in pygame.event.get():
+    def fevent(self):
+        for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
                 if event.type == pygame.KEYDOWN:
@@ -36,14 +31,29 @@ class Game(CanvasObject):
                         self.upp1 = True
                     if event.key == pygame.K_s:
                         self.downp1 = True
+                    if event.key == pygame.K_l:
+                        self.downp2 = True
+                    if event.key == pygame.K_o:
+                        self.upp2 = True
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_w:
                         self.upp1 = False
                     if event.key == pygame.K_s:
                         self.downp1 = False
+                    if event.key == pygame.K_l:
+                        self.downp2 = False
+                    if event.key == pygame.K_o:
+                        self.upp2 = False
+
+    def run(self):
+         
+        while self.running:
+            self.clock.tick(60)
+            self.screen.fill(self.scrcolor)
+            self.fevent()
             self.p2.render()
             self.p1.render()
             self.ball.render()
             self.p1.move(self.upp1, self.downp1)
-            # self.p2.move()
+            self.p2.move(self.upp2, self.downp2)
             pygame.display.update()
