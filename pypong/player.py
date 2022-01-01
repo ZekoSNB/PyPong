@@ -11,13 +11,11 @@ class Player(CanvasObject):
     def render(self):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         pygame.draw.rect(self.screen, self.rectcolor, self.rect)
-        print(self.up)
 
-    def move(self):
-        if self.up:
-            self.y += self.speed
-            print('Moving up')
-        if self.down:
+    def move(self,stateup, statedown):
+        if stateup:
             self.y -= self.speed
-        if self.down and self.up:
-            self.y = self.y
+        if statedown:
+            self.y += self.speed
+        # if self.down and self.up:
+            # self.y = self.y
