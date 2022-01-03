@@ -12,28 +12,28 @@ class Ball(CanvasObject):
         self.rect = pygame.Rect(self.x, self.y, self.bsize, self.bsize)
         pygame.draw.rect(self.src, self.rectcolor, self.rect)
     # TODO: Move a ball
-    def border(self, upp, dow, y):
-        self.up = upp
-        print(self.WIDTH, y)
-        self.down = dow
-        if y >= (self.WIDTH - self.bsize):
+    def border(self):
+        
+        if self.y >= (self.WIDTH - self.bsize):
             self.up = True
             self.down = False
-        if y <= (0 + 25):
+        if self.y < (0 + 25):
+            print("Working")
             self.down = True
             self.up = False
-    def move(self, up,down,left,right,x,y):
+            return self.down
+    def move(self, up,down,left,right):
         if up and right:
-            x += self.speed
-            y -= self.speed
+            self.x += self.speed
+            self.y -= self.speed
         if up and left:
-            x -= self.speed
-            y += self.speed
+            self.x -= self.speed
+            self.y += self.speed
         if down and left:
-            x -= self.speed
-            y -= self.speed
+            self.x -= self.speed
+            self.y -= self.speed
         if down and right:
-            x += self.speed
-            y += self.speed
+            self.x += self.speed
+            self.y += self.speed
     
 

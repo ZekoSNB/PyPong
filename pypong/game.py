@@ -47,16 +47,18 @@ class Game(CanvasObject):
 
     def run(self):
         while self.running:
+            # Game functions
             self.clock.tick(60)
             self.screen.fill(self.scrcolor)
             self.fevent()
-            self.p2.render()
-            self.p1.render()
-            print(self.y)
-            self.ball.render()
-            self.ball.move(self.up,self.down,self.left,self.right, self.x, self.y)
-            self.ball.border(self.up, self.down,self.y)
+            # Player Functions
             self.p1.move(self.upp1, self.downp1)
             self.p2.move(self.upp2, self.downp2)
-            print(self.up,self.down,self.right,self.left)
+            self.p2.render()
+            self.p1.render()
+            # Ball Functions
+            self.ball.render()
+            self.ball.move(self.up,self.down,self.left,self.right)
+            self.ball.border()
+            # Display Update 
             pygame.display.update()
