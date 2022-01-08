@@ -13,7 +13,7 @@ class Ball(CanvasObject):
         pygame.draw.rect(self.src, self.rectcolor, self.rect)
     # TODO: Move a ball
     def border(self):
-        
+        print(self.up,self.down,self.right,self.left)
         if self.y >= (self.WIDTH - self.bsize):
             self.up = True
             self.down = False

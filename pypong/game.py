@@ -45,6 +45,7 @@ class Game(CanvasObject):
                     if event.key == pygame.K_o:
                         self.upp2 = False
 
+
     def run(self):
         while self.running:
             # Game functions
@@ -59,6 +60,7 @@ class Game(CanvasObject):
             # Ball Functions
             self.ball.render()
             self.ball.move(self.up,self.down,self.left,self.right)
+            print(self.up,self.down,self.right,self.left)
             self.ball.border()
             # Display Update 
             pygame.display.update()
