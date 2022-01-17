@@ -13,8 +13,8 @@ class CanvasObject:
         self.downp1 = False
         self.upp2 = False
         self.downp2 = False
-        self.up = True
-        self.down = False
+        self.up = False
+        self.down = True
         self.right = True
         self.left = False
         self.HEIGHT, self.WIDTH = 600, 900

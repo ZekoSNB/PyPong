@@ -60,7 +60,12 @@ class Game(CanvasObject):
             # Ball Functions
             self.ball.render()
             self.ball.move(self.up,self.down,self.left,self.right)
-            print(self.up,self.down,self.right,self.left)
             self.ball.border()
+            if self.ball.border() == 'down':
+                self.down = True
+                self.up = False
+            if self.ball.border() == 'up':
+                self.up = True
+                self.down = False
             # Display Update 
             pygame.display.update()
