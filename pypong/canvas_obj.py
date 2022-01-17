@@ -1,4 +1,6 @@
+from dis import dis
 import pygame
+import math
 
 
 class CanvasObject:
@@ -15,11 +17,20 @@ class CanvasObject:
         self.downp2 = False
         self.up = False
         self.down = True
-        self.right = True
-        self.left = False
+        self.right = False
+        self.left = True
+        self.px1 = 50
+        self.py1 = 150
+        self.px2 = 850
+        self.py2 = 150
         self.HEIGHT, self.WIDTH = 600, 900
     # TODO: check colision
-    def collision(self):
-        pass
+    def collision(self, x,y):
+        distance = math.sqrt(math.pow((self.x - x), 2) + math.pow((self.y - y), 2))
+        print(distance)
+        print(x, y, self.x, self.y)
+        if self.x == x:
+            self.right = True
+            self.left = False
 
 

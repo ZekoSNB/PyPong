@@ -12,8 +12,8 @@ class Game(CanvasObject):
         self.scrcolor = (0,0,0)
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
-        self.p1 = Player(50, 150, self.screen)
-        self.p2 = Player(850, 150, self.screen)
+        self.p1 = Player(self.px1, self.py1, self.screen)
+        self.p2 = Player(self.px2, self.py2, self.screen)
         self.ball = Ball(self.x, self.y , self.screen)
         
         pygame.init()
@@ -44,6 +44,13 @@ class Game(CanvasObject):
                         self.downp2 = False
                     if event.key == pygame.K_o:
                         self.upp2 = False
+    def event(self):
+        if self.ball.border() == 'down':
+            self.down = True
+            self.up = False
+        if self.ball.border() == 'up':
+            self.up = True
+            self.down = False
 
 
     def run(self):
@@ -51,6 +58,7 @@ class Game(CanvasObject):
             # Game functions
             self.clock.tick(60)
             self.screen.fill(self.scrcolor)
+            self.event()
             self.fevent()
             # Player Functions
             self.p1.move(self.upp1, self.downp1)
@@ -61,11 +69,7 @@ class Game(CanvasObject):
             self.ball.render()
             self.ball.move(self.up,self.down,self.left,self.right)
             self.ball.border()
-            if self.ball.border() == 'down':
-                self.down = True
-                self.up = False
-            if self.ball.border() == 'up':
-                self.up = True
-                self.down = False
+            # Collision
+            self.collision(self.px1,self.py1)
             # Display Update 
             pygame.display.update()
