@@ -1,4 +1,3 @@
-from dis import dis
 import pygame
 import math
 
@@ -28,9 +27,7 @@ class CanvasObject:
     def collision(self, px,pyx,y):
         distance = math.sqrt(math.pow((px - x), 2) + math.pow((py- y), 2))
         print(distance)
-        print(x, y, self.x, self.y)
-        if self.x == x:
-            self.right = True
-            self.left = False
+        print(x, y, px, py)
+        
 
 
