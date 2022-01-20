@@ -25,8 +25,8 @@ class CanvasObject:
         self.py2 = 150
         self.HEIGHT, self.WIDTH = 600, 900
     # TODO: check colision
-    def collision(self, x,y):
-        distance = math.sqrt(math.pow((self.x - x), 2) + math.pow((self.y - y), 2))
+    def collision(self, px,pyx,y):
+        distance = math.sqrt(math.pow((px - x), 2) + math.pow((py- y), 2))
         print(distance)
         print(x, y, self.x, self.y)
         if self.x == x:
