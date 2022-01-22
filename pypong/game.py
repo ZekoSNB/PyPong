@@ -70,6 +70,6 @@ class Game(CanvasObject):
             self.ball.move(self.up,self.down,self.left,self.right)
             self.ball.border()
             # Collision
-            self.collision(self.px1,self.py1)
+            self.collision(self.px1,self.py1,self.x, self.y)
             # Display Update 
             pygame.display.update()
