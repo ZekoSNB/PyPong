@@ -6,19 +6,18 @@ from pypong.ball import Ball
 
 
 class Game(CanvasObject):
-    # TODO: add ball
     def __init__(self) -> None:
         super().__init__()
+        pygame.init()
+        pygame.display.set_caption('Pong ^-^')
         self.scrcolor = (0,0,0)
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.p1 = Player(self.px1, self.py1, self.screen)
         self.p2 = Player(self.px2, self.py2, self.screen)
         self.ball = Ball(self.x, self.y , self.screen)
-        
-        pygame.init()
-        pygame.display.set_caption('Pong ^-^')
-        
+        self.myfont = pygame.font.SysFont('monospace', 30)
+        self.textsurface = self.myfont.render('Score:(NONE)',False,(255,255,255))
         self.running = True
     def fevent(self):
         for event in pygame.event.get():
@@ -56,6 +55,7 @@ class Game(CanvasObject):
     def run(self):
         while self.running:
             # Game functions
+            self.screen.blit(self.textsurface,(450, 300))
             self.clock.tick(60)
             self.screen.fill(self.scrcolor)
             self.event()
@@ -70,6 +70,6 @@ class Game(CanvasObject):
             self.ball.move(self.up,self.down,self.left,self.right)
             self.ball.border()
             # Collision
-            self.collision(self.px1,self.py1,self.x, self.y)
+            self.collision(self.p1.x,self.p1.y,self.ball.x, self.ball.y)
             # Display Update 
             pygame.display.update()

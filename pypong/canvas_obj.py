@@ -26,8 +26,8 @@ class CanvasObject:
     # TODO: check colision
     def collision(self, px,py,x,y):
         distance = math.sqrt(math.pow((x - px), 2) + math.pow((y- py), 2))
-        print(distance)
         print(x, y, px, py)
-        
+    def score(self):
+        pass
 
 
