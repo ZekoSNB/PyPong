@@ -16,7 +16,7 @@ class Game(CanvasObject):
         self.p1 = Player(self.px1, self.py1, self.screen)
         self.p2 = Player(self.px2, self.py2, self.screen)
         self.ball = Ball(self.x, self.y , self.screen)
-        self.myfont = pygame.font.SysFont('monospace', 30)
+        self.myfont = pygame.font.SysFont('Monospace Regular', 30)
         self.textsurface = self.myfont.render('Score:(NONE)',False,(255,255,255))
         self.running = True
     def fevent(self):
