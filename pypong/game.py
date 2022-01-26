@@ -10,14 +10,13 @@ class Game(CanvasObject):
         super().__init__()
         pygame.init()
         pygame.display.set_caption('Pong ^-^')
+        self.scr_font = pygame.freetype.Font('assets/fonts/Gamer.ttf', 30)
         self.scrcolor = (0,0,0)
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.p1 = Player(self.px1, self.py1, self.screen)
         self.p2 = Player(self.px2, self.py2, self.screen)
         self.ball = Ball(self.x, self.y , self.screen)
-        self.myfont = pygame.font.SysFont('Monospace Regular', 30)
-        self.textsurface = self.myfont.render('Score:(NONE)',False,(255,255,255))
         self.running = True
     def fevent(self):
         for event in pygame.event.get():
@@ -55,7 +54,6 @@ class Game(CanvasObject):
     def run(self):
         while self.running:
             # Game functions
-            self.screen.blit(self.textsurface,(450, 300))
             self.clock.tick(60)
             self.screen.fill(self.scrcolor)
             self.event()
