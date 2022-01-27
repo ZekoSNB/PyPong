@@ -29,5 +29,6 @@ class Ball(CanvasObject):
         if down and right:
             self.x += self.speed
             self.y += self.speed
-    
+    def reset(self):
+        pass
 
