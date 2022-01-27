@@ -21,15 +21,13 @@ class CanvasObject:
         self.right = False
         self.left = True
         self.px1 = 50
-        self.py1 = 150
+        self.py1 = 0
         self.px2 = 850
         self.py2 = 150
         self.HEIGHT, self.WIDTH = 600, 900
     # TODO: check colision
     def collision(self, px,py,x,y):
-        distance = math.sqrt(math.pow((x - px), 2) + math.pow((y- py), 2))
-        if distance < 64:
-            print("working")
+        if self.y
     def score(self, num1,num2,screen,x,y):
         text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255,255,255))
         screen.blit(text, (x,y))
