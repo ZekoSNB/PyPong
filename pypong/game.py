@@ -10,7 +10,7 @@ class Game(CanvasObject):
         super().__init__()
         pygame.init()
         pygame.display.set_caption('Pong ^-^')
-        self.scr_font = pygame.freetype.Font('assets/fonts/Gamer.ttf', 30)
+        self.scr_font = pygame.font.Font('assets/fonts/Gamer.ttf', 56)
         self.scrcolor = (0,0,0)
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
@@ -56,6 +56,9 @@ class Game(CanvasObject):
             # Game functions
             self.clock.tick(60)
             self.screen.fill(self.scrcolor)
+            self.score(self.count1,self.count2, self.screen, 234,0)
+            if self.ball.x == 0:
+                self.count1 += 1
             self.event()
             self.fevent()
             # Player Functions
@@ -70,4 +73,4 @@ class Game(CanvasObject):
             # Collision
             self.collision(self.p1.x,self.p1.y,self.ball.x, self.ball.y)
             # Display Update 
-            pygame.display.update()
+            pygame.display.flip()

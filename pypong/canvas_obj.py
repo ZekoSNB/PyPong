@@ -10,6 +10,8 @@ class CanvasObject:
         self.speed = 3
         self.x, self.y = 300, 450
         self.rectcolor = (255, 255, 255)
+        self.count1 = 0
+        self.count2 = 0
         self.upp1 = False
         self.downp1 = False
         self.upp2 = False
@@ -26,8 +28,11 @@ class CanvasObject:
     # TODO: check colision
     def collision(self, px,py,x,y):
         distance = math.sqrt(math.pow((x - px), 2) + math.pow((y- py), 2))
-        print(x, y, px, py)
-    def score(self):
-        pass
+        if distance < 64:
+            print("working")
+    def score(self, num1,num2,screen,x,y):
+        text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255,255,255))
+        screen.blit(text, (x,y))
+
 
 
