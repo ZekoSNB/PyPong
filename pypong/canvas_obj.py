@@ -27,7 +27,8 @@ class CanvasObject:
         self.HEIGHT, self.WIDTH = 600, 900
     # TODO: check colision
     def collision(self, px,py,x,y):
-        if self.y
+        if (y+self.height):
+            pass
     def score(self, num1,num2,screen,x,y):
         text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255,255,255))
         screen.blit(text, (x,y))
