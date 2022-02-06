@@ -7,7 +7,9 @@ class CanvasObject:
         self.width = 20
         self.height = 130
         self.bsize = 25
-        self.speed = 3
+        self.speed = 5
+        self.bspeed = 3
+        self.bspeedy = 3
         self.x, self.y = 300, 450
         self.rectcolor = (255, 255, 255)
         self.count1 = 0
@@ -33,5 +35,6 @@ class CanvasObject:
         text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255,255,255))
         screen.blit(text, (x,y))
 
+        
 
 

@@ -18,17 +18,18 @@ class Ball(CanvasObject):
             return 'down'
     def move(self, up,down,left,right):
         if up and right:
-            self.x += self.speed
-            self.y -= self.speed
+            self.x += self.bspeed
+            self.y -= self.bspeed
         if up and left:
-            self.x -= self.speed
-            self.y -= self.speed
+            self.x -= self.bspeed
+            self.y -= self.bspeed
         if down and left:
-            self.x -= self.speed
-            self.y += self.speed
+            self.x -= self.bspeed
+            self.y += self.bspeed
         if down and right:
-            self.x += self.speed
-            self.y += self.speed
+            self.x += self.bspeed
+            self.y += self.bspeed
     def reset(self):
-        pass
+        self.x = 400
+
 

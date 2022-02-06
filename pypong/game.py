@@ -1,3 +1,4 @@
+from re import T
 import pygame
 
 from pypong.player import Player
@@ -49,7 +50,16 @@ class Game(CanvasObject):
         if self.ball.border() == 'up':
             self.up = True
             self.down = False
-
+        if self.ball.x < 0:
+            self.ball.reset()
+            self.count1 += 1
+            self.right = True
+            self.left = False
+        if self.ball.x > 900:
+            self.ball.reset()
+            self.count2 += 1
+            self.right = False
+            self.left = True
 
     def run(self):
         while self.running:
@@ -57,8 +67,6 @@ class Game(CanvasObject):
             self.clock.tick(60)
             self.screen.fill(self.scrcolor)
             self.score(self.count1,self.count2, self.screen, 234,0)
-            if self.ball.x == 0:
-                self.count1 += 1
             self.event()
             self.fevent()
             # Player Functions
@@ -66,6 +74,7 @@ class Game(CanvasObject):
             self.p2.move(self.upp2, self.downp2)
             self.p2.render()
             self.p1.render()
+            print(self.p1.y + self.height )
             # Ball Functions
             self.ball.render()
             self.ball.move(self.up,self.down,self.left,self.right)
