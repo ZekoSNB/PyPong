@@ -1,5 +1,8 @@
+from re import T
 import pygame
 import math
+
+
 
 
 class CanvasObject:
@@ -8,7 +11,7 @@ class CanvasObject:
         self.height = 130
         self.bsize = 25
         self.speed = 5
-        self.bspeed = 3
+        self.bspeed = 2.5
         self.bspeedy = 3
         self.x, self.y = 300, 450
         self.rectcolor = (255, 255, 255)
@@ -28,9 +31,13 @@ class CanvasObject:
         self.py2 = 150
         self.HEIGHT, self.WIDTH = 600, 900
     # TODO: check colision
-    def collision(self, px,py,x,y):
-        if (y+self.height):
-            pass
+    def collision(self, px,py,x,y, p):
+        if px >450:
+            if y >= (py-self.bsize + 10) and y <= (py + self.height + self.bsize - 10) and px == (x+ self.bsize/2) :
+                return True
+        if px < 450:
+            if y >= (py-self.bsize + 10) and y <= (py + self.height + self.bsize - 10) and px == (x- self.bsize/2) :
+                return True
     def score(self, num1,num2,screen,x,y):
         text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255,255,255))
         screen.blit(text, (x,y))
