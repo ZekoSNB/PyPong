@@ -3,8 +3,6 @@ import pygame
 import math
 
 
-
-
 class CanvasObject:
     def __init__(self) -> None:
         self.width = 20
@@ -30,18 +28,16 @@ class CanvasObject:
         self.px2 = 850
         self.py2 = 150
         self.HEIGHT, self.WIDTH = 600, 900
+
     # TODO: check colision
-    def collision(self, px,py,x,y, p):
-        if px >450:
-            if y >= (py-self.bsize + 10) and y <= (py + self.height + self.bsize - 10) and px == (x+ self.bsize/2) :
+    def collision(self, px, py, x, y, p):
+        if px > 450:
+            if y >= (py - self.bsize + 10) and y <= (py + self.height + self.bsize - 10) and px == (x + self.bsize / 2):
                 return True
         if px < 450:
-            if y >= (py-self.bsize + 10) and y <= (py + self.height + self.bsize - 10) and px == (x- self.bsize/2) :
+            if y >= (py - self.bsize + 10) and y <= (py + self.height + self.bsize - 10) and px == (x - self.bsize / 2):
                 return True
-    def score(self, num1,num2,screen,x,y):
-        text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255,255,255))
-        screen.blit(text, (x,y))
 
-        
-
-
+    def score(self, num1, num2, screen, x, y):
+        text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255, 255, 255))
+        screen.blit(text, (x, y))
