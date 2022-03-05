@@ -12,7 +12,7 @@ class Game:
         self.height = 600
         pygame.init()
         pygame.display.set_caption('Pong ^-^')
-        # self.scr_font = pygame.font.Font('assets/fonts/Gamer.ttf', 56)
+        self.scr_font = pygame.font.Font('assets/fonts/Gamer.ttf', 56)
         self.scrcolor = (0, 0, 0)
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((self.width, self.height))
@@ -68,10 +68,18 @@ class Game:
             # Collision
             if self.p1.collision(self.ball) or self.p2.collision(self.ball):
                 self.ball.revert_dir()
+
+            if self.ball.x == 0:
+                self.count2 += 1
+                self.ball.reset()
+
+            if self.ball.x + self.ball.width >= self.width:
+                self.count1 += 1
+                self.ball.reset()
+
             # Display Update
             pygame.display.flip()
 
     def score(self, x, y):
-        return
-        text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255, 255, 255))
-        screen.blit(text, (x, y))
+        text = self.scr_font.render(f"Player1: {self.count1} | Player2: {self.count2}", True, (255, 255, 255))
+        self.screen.blit(text, (x, y))
