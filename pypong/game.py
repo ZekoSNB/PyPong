@@ -1,99 +1,77 @@
 import pygame
 
 from pypong.player import Player
-from pypong.canvas_obj import CanvasObject
 from pypong.ball import Ball
 
+Dir = Player.Direction
 
-class Game(CanvasObject):
+
+class Game:
     def __init__(self) -> None:
-        super().__init__()
+        self.width = 900
+        self.height = 600
         pygame.init()
         pygame.display.set_caption('Pong ^-^')
-        self.scr_font = pygame.font.Font('assets/fonts/Gamer.ttf', 56)
+        # self.scr_font = pygame.font.Font('assets/fonts/Gamer.ttf', 56)
         self.scrcolor = (0, 0, 0)
         self.clock = pygame.time.Clock()
-        self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
-        self.p1 = Player(self.px1, self.py1, self.screen)
-        self.p2 = Player(self.px2, self.py2, self.screen)
-        self.ball = Ball(self.x, self.y, self.screen)
+        self.screen = pygame.display.set_mode((self.width, self.height))
+        self.p1 = Player(50, 0, self.screen)
+        self.p2 = Player(850, 150, self.screen)
+        self.ball = Ball(300, 450, self.screen)
+        self.pressed_keys = set()
         self.running = True
 
-    def fevent(self):
+        self.count1 = 0
+        self.count2 = 0
+
+    def key_event(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.running = False
-                if event.key == pygame.K_w:
-                    self.upp1 = True
-                if event.key == pygame.K_s:
-                    self.downp1 = True
-                if event.key == pygame.K_l:
-                    self.downp2 = True
-                if event.key == pygame.K_o:
-                    self.upp2 = True
+                else:
+                    self.pressed_keys.add(event.key)
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_w:
-                    self.upp1 = False
-                if event.key == pygame.K_s:
-                    self.downp1 = False
-                if event.key == pygame.K_l:
-                    self.downp2 = False
-                if event.key == pygame.K_o:
-                    self.upp2 = False
+                self.pressed_keys.discard(event.key)
 
     def event(self):
-        if self.ball.border() == 'down':
-            self.down = True
-            self.up = False
-        if self.ball.border() == 'up':
-            self.up = True
-            self.down = False
-        if self.ball.x < 0:
-            self.ball.reset()
-            self.count1 += 1
-            self.right = True
-            self.left = False
-        if self.ball.x > 900:
-            self.ball.reset()
-            self.count2 += 1
-            self.right = False
-            self.left = True
-        if self.collision(self.p1.x, self.p1.y, self.ball.x, self.ball.y, self.p1):
-            self.right = True
-            self.left = False
-        if self.collision(self.p2.x, self.p2.y, self.ball.x, self.ball.y, self.p2):
-            self.right = False
-            self.left = True
-        if self.p1.y > 470:
-            self.downp1 = False
-        if self.p1.y < 0:
-            self.upp1 = False
-        if self.p2.y > 470:
-            self.downp2 = False
-        if self.p2.y < 0:
-            self.upp2 = False
+        for key in self.pressed_keys:
+            if key == pygame.K_w:
+                self.p1.move(Dir.UP, self.height)
+            if key == pygame.K_s:
+                self.p1.move(Dir.DOWN, self.height)
+            if key == pygame.K_l:
+                self.p2.move(Dir.DOWN, self.height)
+            if key == pygame.K_o:
+                self.p2.move(Dir.UP, self.height)
 
     def run(self):
         while self.running:
             # Game functions
             self.clock.tick(60)
             self.screen.fill(self.scrcolor)
-            self.score(self.count1, self.count2, self.screen, 234, 0)
+            self.score(234, 0)
+
             self.event()
-            self.fevent()
+            self.key_event()
+
             # Player Functions
-            self.p1.move(self.upp1, self.downp1)
-            self.p2.move(self.upp2, self.downp2)
             self.p2.render()
             self.p1.render()
             # Ball Functions
+            self.ball.move()
             self.ball.render()
-            self.ball.move(self.up, self.down, self.left, self.right)
-            self.ball.border()
+            self.ball.check_border(self.width, self.height)
             # Collision
-            # self.collision(self.p1.x,self.p1.y,self.ball.x, self.ball.y)
-            # Display Update 
+            if self.p1.collision(self.ball) or self.p2.collision(self.ball):
+                self.ball.revert_dir()
+            # Display Update
             pygame.display.flip()
+
+    def score(self, x, y):
+        return
+        text = self.scr_font.render(f"Player1: {num1} | Player2: {num2}", True, (255, 255, 255))
+        screen.blit(text, (x, y))
